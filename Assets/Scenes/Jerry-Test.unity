@@ -5584,22 +5584,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2697218002864933235, guid: 6edc5023c9834bb44be07d667ecc6947, type: 3}
-      propertyPath: jumpForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697218002864933235, guid: 6edc5023c9834bb44be07d667ecc6947, type: 3}
-      propertyPath: sizeArray.Array.data[0]
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697218002864933235, guid: 6edc5023c9834bb44be07d667ecc6947, type: 3}
-      propertyPath: sizeArray.Array.data[1]
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697218002864933235, guid: 6edc5023c9834bb44be07d667ecc6947, type: 3}
-      propertyPath: sizeArray.Array.data[2]
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4157774781732632633, guid: 6edc5023c9834bb44be07d667ecc6947, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5639,10 +5623,6 @@ PrefabInstance:
     - target: {fileID: 4157774781732632633, guid: 6edc5023c9834bb44be07d667ecc6947, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4687632038978955624, guid: 6edc5023c9834bb44be07d667ecc6947, type: 3}
-      propertyPath: maxSpeed
-      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4687632038978955624, guid: 6edc5023c9834bb44be07d667ecc6947, type: 3}
       propertyPath: carSpeedText
