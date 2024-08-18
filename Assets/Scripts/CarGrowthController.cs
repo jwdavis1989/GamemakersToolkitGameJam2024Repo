@@ -10,7 +10,7 @@ public class CarGrowthController : MonoBehaviour
     [Header("Unity Set-up")]
     //Time, in seconds, for size changes to take place
     //public float sizeChangeTimeInSeconds = 0.5f;
-    private int currentScaleIndex = 1;
+    public int currentScaleIndex = 1;
     Rigidbody carRigidBody;
     public float jumpForce = 10;
 
