@@ -4743,6 +4743,14 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 261786958813659542}
+    - target: {fileID: 8527056684655308130, guid: 787ab8cdf0bfe6346ab50a8db8a4c2f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96802825
+      objectReference: {fileID: 0}
+    - target: {fileID: 8527056684655308130, guid: 787ab8cdf0bfe6346ab50a8db8a4c2f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.25084138
+      objectReference: {fileID: 0}
     - target: {fileID: 8669134920293350201, guid: 787ab8cdf0bfe6346ab50a8db8a4c2f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31.568127
@@ -5170,6 +5178,23 @@ PrefabInstance:
     - target: {fileID: 727147319751231720, guid: 1be2d1caa762d92409d300ba1d3fed60, type: 3}
       propertyPath: m_Name
       value: Canvas - Race UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850059347446785496, guid: 1be2d1caa762d92409d300ba1d3fed60, type: 3}
+      propertyPath: m_Text
+      value: 'W - Go forward
+
+        S - Brakes/Reverse
+
+        A - Turn left
+
+        D
+        - Turn Right
+
+        Space - Jump
+
+        Q - Shrink
+
+        E - Enlarge'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
