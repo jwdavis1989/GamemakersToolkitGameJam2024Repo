@@ -343,8 +343,8 @@ MonoBehaviour:
   steeringSpeed: 1
   brakeForce: 450
   decelerationMultiplier: 1
-  handbrakeDriftMultiplier: 5
-  bodyMassCenter: {x: 0, y: 0, z: 0}
+  handbrakeDriftMultiplier: 1
+  bodyMassCenter: {x: 0, y: 0, z: 0.253}
   frontLeftMesh: {fileID: 3434449229241883648}
   frontLeftCollider: {fileID: 420418771511846756}
   frontRightMesh: {fileID: 6634466493918518226}
@@ -385,11 +385,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeArray:
-  - 0.125
+  - 0.25
   - 0.5
   - 2
   sizeChangeTimeInSeconds: 0.5
-  jumpForce: 10
+  jumpForce: 20
+  jumpCooldownInSeconds: 3
+  transformCooldownInSeconds: 1
 --- !u!1 &5420818692080109895
 GameObject:
   m_ObjectHideFlags: 0
