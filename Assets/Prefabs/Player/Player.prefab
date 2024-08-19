@@ -852,6 +852,7 @@ GameObject:
   - component: {fileID: 3974820246447787169}
   - component: {fileID: 4687632038978955624}
   - component: {fileID: 2697218002864933235}
+  - component: {fileID: 5905470311859400960}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -916,6 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fefceefe666bb4682b272ec8c5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnIce: 0
   maxSpeed: 120
   maxReverseSpeed: 45
   accelerationMultiplier: 10
@@ -968,7 +970,22 @@ MonoBehaviour:
   - 0.25
   - 0.5
   - 2
+  currentScaleIndex: 1
   jumpForce: 20
+--- !u!114 &5905470311859400960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299867512040187695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af5b3f196f774bd439caeae9f2f2d722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inWindZone: 0
+  windZone: {fileID: 0}
 --- !u!1 &5420818692080109895
 GameObject:
   m_ObjectHideFlags: 0
