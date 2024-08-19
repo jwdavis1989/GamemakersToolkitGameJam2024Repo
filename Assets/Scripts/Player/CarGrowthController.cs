@@ -10,7 +10,10 @@ public class CarGrowthController : MonoBehaviour
     [Header("Unity Set-up")]
     //Time, in seconds, for size changes to take place
     //public float sizeChangeTimeInSeconds = 0.5f;
+    public AudioSource growSound;
+    public AudioSource shrinkSound;
     public int currentScaleIndex = 1;
+    public bool isControlLocked = true;
     Rigidbody carRigidBody;
     public float jumpForce = 10;
 
@@ -29,25 +32,30 @@ public class CarGrowthController : MonoBehaviour
 
     void GetInputs()
     {
-        //Shrink
-        if (Input.GetKeyDown("q") && currentScaleIndex > 0)
-        {
-            Bounce();
-            currentScaleIndex--;
-            UpdateScale(sizeArray[currentScaleIndex]);
-        }
+        if (!isControlLocked) {
 
-        //Grow
-        if (Input.GetKeyDown("e") && currentScaleIndex < 2)
-        {
-            Bounce();
-            currentScaleIndex++;
-            UpdateScale(sizeArray[currentScaleIndex]);
-        }
+            //Shrink
+            if (Input.GetKeyDown("q") && currentScaleIndex > 0)
+            {
+                Bounce();
+                shrinkSound.Play();
+                currentScaleIndex--;
+                UpdateScale(sizeArray[currentScaleIndex]);
+            }
 
-        //Bounce
-        if(Input.GetKeyDown(KeyCode.Space)){
-            Bounce();
+            //Grow
+            if (Input.GetKeyDown("e") && currentScaleIndex < 2)
+            {
+                Bounce();
+                growSound.Play();
+                currentScaleIndex++;
+                UpdateScale(sizeArray[currentScaleIndex]);
+            }
+
+            //Bounce
+            if(Input.GetKeyDown(KeyCode.Space)){
+                Bounce();
+            }
         }
     }
 
@@ -59,6 +67,7 @@ public class CarGrowthController : MonoBehaviour
     void UpdateScale(float size)
     {
         transform.localScale = new Vector3(size, size, size);
+        carRigidBody.mass = sizeArray[currentScaleIndex] * 950;
     }
 
     void UpdateScaleOverTime(float size)
@@ -70,7 +79,6 @@ public class CarGrowthController : MonoBehaviour
     void Bounce() {
         if (IsGrounded()) {
             carRigidBody.AddForce(transform.up * jumpForce * 1000 * (sizeArray[0]/sizeArray[2]), ForceMode.Impulse);
-            carRigidBody.mass = sizeArray[currentScaleIndex] * 950;
         }
     }
 
