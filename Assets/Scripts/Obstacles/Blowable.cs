@@ -24,7 +24,11 @@ public class Blowable : MonoBehaviour
         if (inWindZone)
         {
             WindBlowArea wind = windZone.GetComponent<WindBlowArea>();
-            rb.AddForce(wind.direction * wind.strength);
+            CarGrowthController car = gameObject.GetComponent<CarGrowthController>();//.currentScaleIndex
+            if (car && car.currentScaleIndex == 0)
+            {
+                rb.AddForce(wind.direction * wind.strength);
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
