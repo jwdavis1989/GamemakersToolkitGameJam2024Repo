@@ -9,14 +9,10 @@ public class CarGrowthController : MonoBehaviour
 
     [Header("Unity Set-up")]
     //Time, in seconds, for size changes to take place
-    public float sizeChangeTimeInSeconds = 0.5f;
-    private int currentScaleIndex = 1;
+    //public float sizeChangeTimeInSeconds = 0.5f;
+    public int currentScaleIndex = 1;
     Rigidbody carRigidBody;
     public float jumpForce = 10;
-    public float jumpCooldownInSeconds = 3f;
-    public float transformCooldownInSeconds = 1f;
-    private bool canJump = true;
-    private bool canTransform = true;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +32,7 @@ public class CarGrowthController : MonoBehaviour
         //Shrink
         if (Input.GetKeyDown("q") && currentScaleIndex > 0)
         {
-            TransformBounce();
+            Bounce();
             currentScaleIndex--;
             UpdateScale(sizeArray[currentScaleIndex]);
         }
@@ -44,7 +40,7 @@ public class CarGrowthController : MonoBehaviour
         //Grow
         if (Input.GetKeyDown("e") && currentScaleIndex < 2)
         {
-            TransformBounce();
+            Bounce();
             currentScaleIndex++;
             UpdateScale(sizeArray[currentScaleIndex]);
         }
@@ -72,37 +68,14 @@ public class CarGrowthController : MonoBehaviour
     }
 
     void Bounce() {
-        if (canJump){
-        //if (IsGrounded()) {
-            canJump = false;
+        if (IsGrounded()) {
             carRigidBody.AddForce(transform.up * jumpForce * 1000 * (sizeArray[0]/sizeArray[2]), ForceMode.Impulse);
             carRigidBody.mass = sizeArray[currentScaleIndex] * 950;
-            StartCoroutine(JumpCooldown());
-        }
-    }
-    void TransformBounce() {
-        if (canTransform){
-        //if (IsGrounded()) {
-            canTransform = false;
-            carRigidBody.AddForce(transform.up * jumpForce * 1000 * (sizeArray[0]/sizeArray[2]), ForceMode.Impulse);
-            carRigidBody.mass = sizeArray[currentScaleIndex] * 950;
-            StartCoroutine(TransformCooldown());
         }
     }
 
-    private IEnumerator JumpCooldown() {
-        yield return new WaitForSeconds(jumpCooldownInSeconds);
-        canJump = true;
+    bool IsGrounded() {
+        Vector3 raycastOffset = new Vector3(transform.position.x, transform.position.y + sizeArray[0]/sizeArray[2], transform.position.z);
+        return Physics.Raycast(raycastOffset, transform.TransformDirection(Vector3.down), sizeArray[0]/sizeArray[2]);
     }
-
-    private IEnumerator TransformCooldown() {
-        yield return new WaitForSeconds(transformCooldownInSeconds);
-        canTransform = true;
-    }
-
-    // bool IsGrounded() {
-    //     bool debug = Physics.Raycast(transform.position, -Vector3.up, collider.bounds.extents.y + 0.1);
-    //     Debug.Log(debug);
-    //     return debug;
-    // }
 }

@@ -17,6 +17,8 @@ using UnityEngine.UI;
 public class PrometeoCarController : MonoBehaviour
 {
 
+      [Header("Obstacle Variables")]
+      public bool isOnIce = false;
     //CAR SETUP
 
       [Space(20)]
@@ -161,6 +163,10 @@ public class PrometeoCarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+      //Obstacles
+      isOnIce = false;
+
       //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
       //gameObject. Also, we define the center of mass of the car with the Vector3 given
       //in the inspector.
@@ -344,11 +350,12 @@ public class PrometeoCarController : MonoBehaviour
         if(Input.GetKey(KeyCode.D)){
           TurnRight();
         }
-        // if(Input.GetKey(KeyCode.Space)){
-        //   CancelInvoke("DecelerateCar");
-        //   deceleratingCar = false;
-        //   Handbrake();
-        // }
+        if(isOnIce){
+          CancelInvoke("DecelerateCar");
+          deceleratingCar = false;
+          Handbrake();
+        }
+
         if(Input.GetKeyUp(KeyCode.Space)){
           RecoverTraction();
         }
