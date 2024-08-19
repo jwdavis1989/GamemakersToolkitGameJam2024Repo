@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,17 +15,21 @@ public class GameManager : MonoBehaviour
     [Header("UI & Sound")]
     public GameObject titleUI;
     public GameObject raceUI;
+    public GameObject pauseUI;
+    public GameObject victoryUI;
+    public GameObject gameOverUI;
     public GameObject musicPlayer;
     private AudioSource backgroundMusic;
     public TextMeshProUGUI timerText;
 
     [Header("Race Attributes")]
     public float raceDuration = 15f;
-    public float raceDurationRemaining;
+    private float raceDurationRemaining;
+    public float raceDurationDangerDivisor = 3f;
     public GameObject raceCountdownLight;
     public bool isCountdownFinished = false;
+    private bool isRunningOutOfTime = false;
     public bool hasWon = false;
-    public bool hasLost = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +47,9 @@ public class GameManager : MonoBehaviour
         //If Racing . . .
         if (currentGameMode == gameModes[1]) {
             HandleRaceLogic();
+        }
+        if ((currentGameMode == gameModes[1] || currentGameMode == gameModes[2]) && isCountdownFinished) {
+            HandleInput();
         }
     }
 
@@ -61,6 +69,51 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void RestartButton() {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void DisplayVictoryScreen() {
+        titleUI.SetActive(false);
+        raceUI.SetActive(false);
+        victoryUI.SetActive(true);
+        player.SetActive(false);
+        currentGameMode = gameModes[3];
+    }
+
+    void DisplayGameOverScreen() {
+        titleUI.SetActive(false);
+        raceUI.SetActive(false);
+        victoryUI.SetActive(false);
+        gameOverUI.SetActive(true);
+        player.SetActive(false);
+        currentGameMode = gameModes[4];
+        backgroundMusic.pitch = 0.25f;
+    }
+
+    void DisplayPauseScreen() {
+        Time.timeScale = 0;
+        pauseUI.SetActive(true);
+        currentGameMode = gameModes[2];
+    }
+
+    public void UnPauseGame() {
+        Time.timeScale = 1;
+        pauseUI.SetActive(false);
+        currentGameMode = gameModes[1];
+    }
+
+    void HandleInput() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (currentGameMode == gameModes[1]) {
+                DisplayPauseScreen();
+            }
+            else {
+                UnPauseGame();
+            }
+        }
+    }
     public void ToggleMusic() {
         musicPlayer.SetActive(true);
     }
@@ -76,6 +129,18 @@ public class GameManager : MonoBehaviour
     void HandleRaceLogic() {
         if (isCountdownFinished) {
             UpdateTimerTextDisplay();
+            if (!isRunningOutOfTime && raceDurationRemaining < (raceDuration / raceDurationDangerDivisor)) {
+                isRunningOutOfTime = true;
+                PitchUpMusic();
+            }
+
+            if (raceDurationRemaining < 0) {
+                DisplayGameOverScreen();
+            }
+
+            if (hasWon) {
+                DisplayVictoryScreen();
+            }
         }
     }
 
