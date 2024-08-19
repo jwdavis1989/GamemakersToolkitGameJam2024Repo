@@ -21,8 +21,10 @@ public class GameManager : MonoBehaviour
     [Header("Race Attributes")]
     public float raceDuration = 15f;
     public float raceDurationRemaining;
+    public float raceDurationDangerDivisor = 3f;
     public GameObject raceCountdownLight;
     public bool isCountdownFinished = false;
+    private bool isRunningOutOfTime = false;
     public bool hasWon = false;
     public bool hasLost = false;
 
@@ -76,6 +78,10 @@ public class GameManager : MonoBehaviour
     void HandleRaceLogic() {
         if (isCountdownFinished) {
             UpdateTimerTextDisplay();
+            if (!isRunningOutOfTime && raceDurationRemaining < (raceDuration / raceDurationDangerDivisor)) {
+                isRunningOutOfTime = true;
+                PitchUpMusic();
+            }
         }
     }
 

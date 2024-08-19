@@ -55,6 +55,7 @@ MonoBehaviour:
   timerText: {fileID: 938440833210823671}
   raceDuration: 120
   raceDurationRemaining: 0
+  raceDurationDangerDivisor: 3
   raceCountdownLight: {fileID: 3850083528075589996, guid: 5a4de0d3777beb0459cdfa2d047dd6e8, type: 3}
   isCountdownFinished: 0
   hasWon: 0
