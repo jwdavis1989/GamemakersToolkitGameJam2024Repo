@@ -59,6 +59,7 @@ public class CarGrowthController : MonoBehaviour
     void UpdateScale(float size)
     {
         transform.localScale = new Vector3(size, size, size);
+        carRigidBody.mass = sizeArray[currentScaleIndex] * 950;
     }
 
     void UpdateScaleOverTime(float size)
@@ -70,7 +71,6 @@ public class CarGrowthController : MonoBehaviour
     void Bounce() {
         if (IsGrounded()) {
             carRigidBody.AddForce(transform.up * jumpForce * 1000 * (sizeArray[0]/sizeArray[2]), ForceMode.Impulse);
-            carRigidBody.mass = sizeArray[currentScaleIndex] * 950;
         }
     }
 
