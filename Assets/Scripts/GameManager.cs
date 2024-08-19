@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     private string currentGameMode;
     [Header("Player Endpoint")]
     public GameObject player;
+    private PrometeoCarController playerPrometeoScript;
 
     [Header("UI & Sound")]
     public GameObject titleUI;
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player.SetActive(false);
+        playerPrometeoScript = player.GetComponent<PrometeoCarController>();
+        playerPrometeoScript.enabled = false;
         currentGameMode = gameModes[0];
         backgroundMusic = musicPlayer.GetComponent<AudioSource>();
     }
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void EnablePlayerControl() {
         player.GetComponent<CarGrowthController>().isControlLocked = false;
+        playerPrometeoScript.enabled = true;
         isCountdownFinished = true;
     }
 }
