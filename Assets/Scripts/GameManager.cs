@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,9 +16,10 @@ public class GameManager : MonoBehaviour
     public GameObject raceUI;
     public GameObject musicPlayer;
     private AudioSource backgroundMusic;
+    public TextMeshProUGUI timerText;
 
     [Header("Race Attributes")]
-    public float raceDuration = 120f;
+    public float raceDuration = 15f;
     public float raceDurationRemaining;
     public GameObject raceCountdownLight;
     public bool isCountdownFinished = false;
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
         backgroundMusic.Play();
         currentGameMode = gameModes[1];
         spawnCountdownLight();
-        raceDurationRemaining = raceDuration;
+        SetTimerTextDisplay();
         player.SetActive(true);
     }
 
@@ -73,7 +75,7 @@ public class GameManager : MonoBehaviour
 
     void HandleRaceLogic() {
         if (isCountdownFinished) {
-            raceDurationRemaining -= Time.deltaTime;
+            UpdateTimerTextDisplay();
         }
     }
 
@@ -81,5 +83,18 @@ public class GameManager : MonoBehaviour
         player.GetComponent<CarGrowthController>().isControlLocked = false;
         playerPrometeoScript.enabled = true;
         isCountdownFinished = true;
+    }
+
+    public void SetTimerTextDisplay() {
+        raceDurationRemaining = raceDuration;
+        int minutes = Mathf.FloorToInt(raceDurationRemaining / 60);
+        int seconds = Mathf.FloorToInt(raceDurationRemaining % 60);
+        timerText.text = "Timer: " + string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+    public void UpdateTimerTextDisplay() {
+        raceDurationRemaining -= Time.deltaTime;
+        int minutes = Mathf.FloorToInt(raceDurationRemaining / 60);
+        int seconds = Mathf.FloorToInt(raceDurationRemaining % 60);
+        timerText.text = "Timer: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
