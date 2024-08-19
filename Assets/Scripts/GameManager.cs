@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("UI & Sound")]
     public GameObject titleUI;
     public GameObject raceUI;
+    public GameObject victoryUI;
     public GameObject musicPlayer;
     private AudioSource backgroundMusic;
     public TextMeshProUGUI timerText;
@@ -61,6 +63,18 @@ public class GameManager : MonoBehaviour
 
     public void ExitButton() {
         Application.Quit();
+    }
+
+    public void RestartButton() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void DisplayVictoryScreen() {
+        titleUI.SetActive(false);
+        raceUI.SetActive(false);
+        victoryUI.SetActive(true);
+        player.SetActive(false);
+        currentGameMode = gameModes[3];
     }
 
     public void ToggleMusic() {
