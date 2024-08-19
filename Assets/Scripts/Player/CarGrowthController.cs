@@ -20,8 +20,8 @@ public class CarGrowthController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitializeScale();
         carRigidBody = GetComponent<Rigidbody>();
+        InitializeScale();
     }
 
     // Update is called once per frame
@@ -62,6 +62,7 @@ public class CarGrowthController : MonoBehaviour
     void InitializeScale()
     {
         transform.localScale = new Vector3(sizeArray[currentScaleIndex], sizeArray[currentScaleIndex], sizeArray[currentScaleIndex]);
+        carRigidBody.mass = sizeArray[currentScaleIndex] * 950;
     }
 
     void UpdateScale(float size)
