@@ -10,6 +10,8 @@ public class CarGrowthController : MonoBehaviour
     [Header("Unity Set-up")]
     //Time, in seconds, for size changes to take place
     //public float sizeChangeTimeInSeconds = 0.5f;
+    public AudioSource growSound;
+    public AudioSource shrinkSound;
     public int currentScaleIndex = 1;
     public bool isControlLocked = true;
     Rigidbody carRigidBody;
@@ -36,6 +38,7 @@ public class CarGrowthController : MonoBehaviour
             if (Input.GetKeyDown("q") && currentScaleIndex > 0)
             {
                 Bounce();
+                shrinkSound.Play();
                 currentScaleIndex--;
                 UpdateScale(sizeArray[currentScaleIndex]);
             }
@@ -44,6 +47,7 @@ public class CarGrowthController : MonoBehaviour
             if (Input.GetKeyDown("e") && currentScaleIndex < 2)
             {
                 Bounce();
+                growSound.Play();
                 currentScaleIndex++;
                 UpdateScale(sizeArray[currentScaleIndex]);
             }
