@@ -16,13 +16,14 @@ public class GameManager : MonoBehaviour
     public GameObject titleUI;
     public GameObject raceUI;
     public GameObject victoryUI;
+    public GameObject gameOverUI;
     public GameObject musicPlayer;
     private AudioSource backgroundMusic;
     public TextMeshProUGUI timerText;
 
     [Header("Race Attributes")]
     public float raceDuration = 15f;
-    public float raceDurationRemaining;
+    private float raceDurationRemaining;
     public float raceDurationDangerDivisor = 3f;
     public GameObject raceCountdownLight;
     public bool isCountdownFinished = false;
@@ -77,6 +78,16 @@ public class GameManager : MonoBehaviour
         currentGameMode = gameModes[3];
     }
 
+    void DisplayGameOverScreen() {
+        titleUI.SetActive(false);
+        raceUI.SetActive(false);
+        victoryUI.SetActive(false);
+        gameOverUI.SetActive(true);
+        player.SetActive(false);
+        currentGameMode = gameModes[4];
+        backgroundMusic.pitch = 0.25f;
+    }
+
     public void ToggleMusic() {
         musicPlayer.SetActive(true);
     }
@@ -95,6 +106,10 @@ public class GameManager : MonoBehaviour
             if (!isRunningOutOfTime && raceDurationRemaining < (raceDuration / raceDurationDangerDivisor)) {
                 isRunningOutOfTime = true;
                 PitchUpMusic();
+            }
+
+            if (raceDurationRemaining < 0) {
+                DisplayGameOverScreen();
             }
         }
     }
