@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - IcyGround
   - windArea
+  - iceArea
   layers:
   - Default
   - TransparentFX

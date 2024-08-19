@@ -392,7 +392,7 @@ public class PrometeoCarController : MonoBehaviour
         {
           TurnRight();
         }
-        if (isOnIce)
+        if (isOnIce && gameObject.GetComponent<CarGrowthController>().currentScaleIndex != 2)
         {
           CancelInvoke("DecelerateCar");
           deceleratingCar = false;

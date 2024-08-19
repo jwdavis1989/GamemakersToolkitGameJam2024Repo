@@ -9,14 +9,14 @@ public class IcyTraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("iceArea"))
         {
-            //player.GetComponent<CarGrowthController>().isOnIce = true;
+            player.GetComponent<PrometeoCarController>().isOnIce = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("iceArea"))
         {
-            //player.GetComponent<CarGrowthController>().isOnIce = false;
+            player.GetComponent<PrometeoCarController>().isOnIce = false;
         }
     }
 }
