@@ -57,7 +57,7 @@ public class RaceCountdownController : MonoBehaviour
     }
 
     void Beep() {
-        Debug.Log(countDownRemaining);
+        //Debug.Log(countDownRemaining);
         if (countDownRemaining == 4) {
             redLight.SetActive(true);
         }
