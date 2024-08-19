@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("UI & Sound")]
     public GameObject titleUI;
     public GameObject raceUI;
+    public GameObject pauseUI;
     public GameObject victoryUI;
     public GameObject gameOverUI;
     public GameObject musicPlayer;
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviour
     public bool isCountdownFinished = false;
     private bool isRunningOutOfTime = false;
     public bool hasWon = false;
-    public bool hasLost = false;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
         //If Racing . . .
         if (currentGameMode == gameModes[1]) {
             HandleRaceLogic();
+        }
+        if ((currentGameMode == gameModes[1] || currentGameMode == gameModes[2]) && isCountdownFinished) {
+            HandleInput();
         }
     }
 
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartButton() {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -88,6 +92,28 @@ public class GameManager : MonoBehaviour
         backgroundMusic.pitch = 0.25f;
     }
 
+    void DisplayPauseScreen() {
+        Time.timeScale = 0;
+        pauseUI.SetActive(true);
+        currentGameMode = gameModes[2];
+    }
+
+    public void UnPauseGame() {
+        Time.timeScale = 1;
+        pauseUI.SetActive(false);
+        currentGameMode = gameModes[1];
+    }
+
+    void HandleInput() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (currentGameMode == gameModes[1]) {
+                DisplayPauseScreen();
+            }
+            else {
+                UnPauseGame();
+            }
+        }
+    }
     public void ToggleMusic() {
         musicPlayer.SetActive(true);
     }
@@ -110,6 +136,10 @@ public class GameManager : MonoBehaviour
 
             if (raceDurationRemaining < 0) {
                 DisplayGameOverScreen();
+            }
+
+            if (hasWon) {
+                DisplayVictoryScreen();
             }
         }
     }
