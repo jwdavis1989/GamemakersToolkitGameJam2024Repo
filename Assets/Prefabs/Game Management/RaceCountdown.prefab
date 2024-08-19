@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45219ef1946a3c64893200a2509af46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 118359989140375336, guid: 3863df1bea0c33742aa76fcf2ec7e23d, type: 3}
   redLight: {fileID: 6401221467801566092}
   yellowLight: {fileID: 6144176154178422382}
   greenLight: {fileID: 3905405940124416728}

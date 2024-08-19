@@ -11,6 +11,7 @@ public class CarGrowthController : MonoBehaviour
     //Time, in seconds, for size changes to take place
     //public float sizeChangeTimeInSeconds = 0.5f;
     public int currentScaleIndex = 1;
+    public bool isControlLocked = true;
     Rigidbody carRigidBody;
     public float jumpForce = 10;
 
@@ -29,25 +30,28 @@ public class CarGrowthController : MonoBehaviour
 
     void GetInputs()
     {
-        //Shrink
-        if (Input.GetKeyDown("q") && currentScaleIndex > 0)
-        {
-            Bounce();
-            currentScaleIndex--;
-            UpdateScale(sizeArray[currentScaleIndex]);
-        }
+        if (!isControlLocked) {
 
-        //Grow
-        if (Input.GetKeyDown("e") && currentScaleIndex < 2)
-        {
-            Bounce();
-            currentScaleIndex++;
-            UpdateScale(sizeArray[currentScaleIndex]);
-        }
+            //Shrink
+            if (Input.GetKeyDown("q") && currentScaleIndex > 0)
+            {
+                Bounce();
+                currentScaleIndex--;
+                UpdateScale(sizeArray[currentScaleIndex]);
+            }
 
-        //Bounce
-        if(Input.GetKeyDown(KeyCode.Space)){
-            Bounce();
+            //Grow
+            if (Input.GetKeyDown("e") && currentScaleIndex < 2)
+            {
+                Bounce();
+                currentScaleIndex++;
+                UpdateScale(sizeArray[currentScaleIndex]);
+            }
+
+            //Bounce
+            if(Input.GetKeyDown(KeyCode.Space)){
+                Bounce();
+            }
         }
     }
 

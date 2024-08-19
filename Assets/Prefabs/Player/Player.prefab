@@ -916,6 +916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fefceefe666bb4682b272ec8c5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlLocked: 0
+  isOnIce: 0
   maxSpeed: 120
   maxReverseSpeed: 45
   accelerationMultiplier: 10
@@ -968,6 +970,8 @@ MonoBehaviour:
   - 0.25
   - 0.5
   - 2
+  currentScaleIndex: 1
+  isControlLocked: 1
   jumpForce: 20
 --- !u!1 &5420818692080109895
 GameObject:

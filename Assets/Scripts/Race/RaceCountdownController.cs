@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RaceCountdownController : MonoBehaviour
 {
+    [Header("Unity Setup")]
+    private GameObject gameController;
     private Transform trafficLight;
     public GameObject redLight;
     public GameObject yellowLight;
@@ -27,6 +29,7 @@ public class RaceCountdownController : MonoBehaviour
         trafficLight = this.gameObject.transform.GetChild(0);
         trafficLight.position = startingPosition;
         countDownSound = GetComponent<AudioSource>();
+        gameController = GameObject.Find("Game Manager");
     }
 
     // Update is called once per frame
@@ -68,6 +71,7 @@ public class RaceCountdownController : MonoBehaviour
         else if (countDownRemaining == 2) {
             yellowLight.SetActive(false);
             greenLight.SetActive(true);
+            gameController.GetComponent<GameManager>().EnablePlayerControl();
         }
         countDownRemaining--;
 
