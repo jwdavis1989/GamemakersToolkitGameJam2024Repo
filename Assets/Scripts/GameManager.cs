@@ -80,7 +80,9 @@ public class GameManager : MonoBehaviour
         titleUI.SetActive(false);
         raceUI.SetActive(false);
         victoryUI.SetActive(true);
-        player.SetActive(false);
+        player.GetComponent<CarGrowthController>().winSound.Play();
+        player.GetComponent<CarGrowthController>().isControlLocked = true;
+        //player.SetActive(false);
         currentGameMode = gameModes[3];
     }
 

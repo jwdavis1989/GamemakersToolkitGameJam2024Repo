@@ -59,7 +59,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 154206466945164810}
   musicPlayer: {fileID: 6696813823105757853}
   timerText: {fileID: 938440833210823671}
-  raceDuration: 120
+  raceDuration: 150
   raceDurationDangerDivisor: 3
   raceCountdownLight: {fileID: 3850083528075589996, guid: 5a4de0d3777beb0459cdfa2d047dd6e8, type: 3}
   isCountdownFinished: 0
@@ -3956,6 +3956,10 @@ PrefabInstance:
     - target: {fileID: 3701613721084280485, guid: 3789ea52c1d8e604cb4f1168ee391164, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308063810426691242, guid: 3789ea52c1d8e604cb4f1168ee391164, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 102.19141
       objectReference: {fileID: 0}
     - target: {fileID: 4449762689373269648, guid: 3789ea52c1d8e604cb4f1168ee391164, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
