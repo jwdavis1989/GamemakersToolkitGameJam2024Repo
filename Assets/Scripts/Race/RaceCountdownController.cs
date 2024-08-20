@@ -30,6 +30,7 @@ public class RaceCountdownController : MonoBehaviour
         trafficLight.position = startingPosition;
         countDownSound = GetComponent<AudioSource>();
         gameController = GameObject.Find("Game Manager");
+        redLight.SetActive(true);
     }
 
     // Update is called once per frame
