@@ -56,9 +56,11 @@ public class GameManager : MonoBehaviour
     public void StartButton() {
         titleUI.SetActive(false);
         raceUI.SetActive(true);
-        backgroundMusic.Stop();
-        PitchUpMusic();
-        backgroundMusic.Play();
+        if (musicPlayer.activeSelf) {
+            backgroundMusic.Stop();
+            PitchUpMusic();
+            backgroundMusic.Play();
+        }
         currentGameMode = gameModes[1];
         spawnCountdownLight();
         SetTimerTextDisplay();
@@ -89,7 +91,9 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
         player.SetActive(false);
         currentGameMode = gameModes[4];
-        backgroundMusic.pitch = 0.25f;
+        if (musicPlayer.activeSelf) {
+            backgroundMusic.pitch = 0.25f;
+        }
     }
 
     void DisplayPauseScreen() {
@@ -119,7 +123,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void PitchUpMusic() {
-        backgroundMusic.pitch += 0.25f;
+        if (musicPlayer.activeSelf) {
+            backgroundMusic.pitch += 0.25f;
+        }
     }
 
     void spawnCountdownLight() {

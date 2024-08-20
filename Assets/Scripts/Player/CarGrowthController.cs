@@ -37,7 +37,7 @@ public class CarGrowthController : MonoBehaviour
             //Shrink
             if (Input.GetKeyDown("q") && currentScaleIndex > 0)
             {
-                Bounce();
+                //Bounce();
                 shrinkSound.Play();
                 currentScaleIndex--;
                 UpdateScale(sizeArray[currentScaleIndex]);
@@ -46,7 +46,7 @@ public class CarGrowthController : MonoBehaviour
             //Grow
             if (Input.GetKeyDown("e") && currentScaleIndex < 2)
             {
-                Bounce();
+                //Bounce();
                 growSound.Play();
                 currentScaleIndex++;
                 UpdateScale(sizeArray[currentScaleIndex]);
