@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void DisplayVictoryScreen() {
+    public void DisplayVictoryScreen() {
         titleUI.SetActive(false);
         raceUI.SetActive(false);
         victoryUI.SetActive(true);
