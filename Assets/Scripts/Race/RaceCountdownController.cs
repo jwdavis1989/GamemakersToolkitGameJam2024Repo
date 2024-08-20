@@ -12,8 +12,9 @@ public class RaceCountdownController : MonoBehaviour
     public GameObject greenLight;
     private bool isCurrentlyDescending = true;
     [Header("Animation")]
-    public float descentCeiling = 1;
-    public Vector3 startingPosition = new Vector3(-5f, 20f, 5f);
+    public float descentCeiling = 3;
+    public Vector3 startingPosition = new Vector3(10f, 20f, 5f);
+    public Quaternion startingRotation;
     public Vector3 descentSpeed = new Vector3(0, -8f, 0);
     private bool isCountingDown = false;
     private float countDownInterval = 1.15f;
@@ -28,6 +29,8 @@ public class RaceCountdownController : MonoBehaviour
     void Start() {
         trafficLight = this.gameObject.transform.GetChild(0);
         trafficLight.position = startingPosition;
+        startingRotation = Quaternion.Euler(new Vector3(0, -90, 0));
+        trafficLight.rotation = startingRotation;
         countDownSound = GetComponent<AudioSource>();
         gameController = GameObject.Find("Game Manager");
         redLight.SetActive(true);

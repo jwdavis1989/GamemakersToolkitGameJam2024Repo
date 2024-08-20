@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
 
     void spawnCountdownLight() {
         Instantiate(raceCountdownLight, new Vector3(0, 0, 0), Quaternion.identity);
+        //Instantiate(raceCountdownLight, new Vector3(0, 0, player.transform.z + 5f), Quaternion.Euler(Vector3(0, 90, 0)));
     }
 
     void HandleRaceLogic() {
