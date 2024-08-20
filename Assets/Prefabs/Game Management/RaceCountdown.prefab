@@ -49,8 +49,9 @@ MonoBehaviour:
   redLight: {fileID: 4823748377143665515}
   yellowLight: {fileID: 5187245396564973824}
   greenLight: {fileID: 5086536649705559601}
-  descentCeiling: 1
-  startingPosition: {x: -5, y: 20, z: 5}
+  descentCeiling: 3
+  startingPosition: {x: 10, y: 20, z: 5}
+  startingRotation: {x: 0, y: 0, z: 0, w: 0}
   descentSpeed: {x: 0, y: -8, z: 0}
   countDownSound: {fileID: 0}
 --- !u!82 &8657824187249286871

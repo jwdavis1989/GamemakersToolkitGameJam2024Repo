@@ -56,9 +56,11 @@ public class GameManager : MonoBehaviour
     public void StartButton() {
         titleUI.SetActive(false);
         raceUI.SetActive(true);
-        backgroundMusic.Stop();
-        PitchUpMusic();
-        backgroundMusic.Play();
+        if (musicPlayer.activeSelf) {
+            backgroundMusic.Stop();
+            PitchUpMusic();
+            backgroundMusic.Play();
+        }
         currentGameMode = gameModes[1];
         spawnCountdownLight();
         SetTimerTextDisplay();
@@ -74,11 +76,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void DisplayVictoryScreen() {
+    public void DisplayVictoryScreen() {
         titleUI.SetActive(false);
         raceUI.SetActive(false);
         victoryUI.SetActive(true);
-        player.SetActive(false);
+        player.GetComponent<CarGrowthController>().winSound.Play();
+        player.GetComponent<CarGrowthController>().isControlLocked = true;
+        //player.SetActive(false);
         currentGameMode = gameModes[3];
     }
 
@@ -89,7 +93,9 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
         player.SetActive(false);
         currentGameMode = gameModes[4];
-        backgroundMusic.pitch = 0.25f;
+        if (musicPlayer.activeSelf) {
+            backgroundMusic.pitch = 0.25f;
+        }
     }
 
     void DisplayPauseScreen() {
@@ -119,11 +125,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void PitchUpMusic() {
-        backgroundMusic.pitch += 0.25f;
+        if (musicPlayer.activeSelf) {
+            backgroundMusic.pitch += 0.25f;
+        }
     }
 
     void spawnCountdownLight() {
         Instantiate(raceCountdownLight, new Vector3(0, 0, 0), Quaternion.identity);
+        //Instantiate(raceCountdownLight, new Vector3(0, 0, player.transform.z + 5f), Quaternion.Euler(Vector3(0, 90, 0)));
     }
 
     void HandleRaceLogic() {

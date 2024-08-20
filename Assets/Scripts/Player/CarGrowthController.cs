@@ -12,6 +12,8 @@ public class CarGrowthController : MonoBehaviour
     //public float sizeChangeTimeInSeconds = 0.5f;
     public AudioSource growSound;
     public AudioSource shrinkSound;
+    public AudioSource winSound;
+    private GameManager gameManager;
     public int currentScaleIndex = 1;
     public bool isControlLocked = true;
     Rigidbody carRigidBody;
@@ -22,6 +24,7 @@ public class CarGrowthController : MonoBehaviour
     {
         carRigidBody = GetComponent<Rigidbody>();
         InitializeScale();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class CarGrowthController : MonoBehaviour
             //Shrink
             if (Input.GetKeyDown("q") && currentScaleIndex > 0)
             {
-                Bounce();
+                //Bounce();
                 shrinkSound.Play();
                 currentScaleIndex--;
                 UpdateScale(sizeArray[currentScaleIndex]);
@@ -46,7 +49,7 @@ public class CarGrowthController : MonoBehaviour
             //Grow
             if (Input.GetKeyDown("e") && currentScaleIndex < 2)
             {
-                Bounce();
+                //Bounce();
                 growSound.Play();
                 currentScaleIndex++;
                 UpdateScale(sizeArray[currentScaleIndex]);
@@ -86,5 +89,21 @@ public class CarGrowthController : MonoBehaviour
     bool IsGrounded() {
         Vector3 raycastOffset = new Vector3(transform.position.x, transform.position.y + sizeArray[0]/sizeArray[2], transform.position.z);
         return Physics.Raycast(raycastOffset, transform.TransformDirection(Vector3.down), sizeArray[0]/sizeArray[2]);
+    }
+
+    // void OnCollisionEnter(Collision collision) {
+    //     if(collision.gameObject.name == "Finish Line") {
+    //         gameManager.hasWon = true;
+    //     }
+    //     Debug.Log("WHEN WORLDS COLLIDE!");
+    // }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.name == "Finish Hitbox") {
+            gameManager.DisplayVictoryScreen();
+        }
+        else if(other.gameObject.name == "Sound Hitbox") {
+            winSound.Play();
+        }
     }
 }
